@@ -1,0 +1,4 @@
+%h1 add attachment
+- form_tag '/', :enctype => 'multipart/form-data' do
+ = file_field_tag 'upload[file]'
+ = submit_tag 'upload'
