@@ -3,6 +3,8 @@ Watage::Application.routes.draw do
   get '/',  :controller => 'application', :action => 'index'
   post '/', :controller => 'api/v1/filer', :action => 'put'
 
+  get '/authorize', :controller => 'application', :action => 'authorize'
+
   namespace(:api) do
     namespace(:v1) do
       post  'put', :controller => 'filer', :action => 'put'

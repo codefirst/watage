@@ -1,4 +1,9 @@
-%h1 add attachment
+%h1 Watage: a simple online storage interface
+
+%h3 Backend storage settings
+%a{:href => url_for(:action => "authorize")} setup here
+
+%h3 Add attachment here
 - form_tag '/', :enctype => 'multipart/form-data' do
  = file_field_tag 'upload[file]'
  = submit_tag 'upload'
