@@ -6,48 +6,42 @@ require 'signet/oauth_2/client'
 module Api
   module V1
     class FilerController < ApplicationController
-      skip_before_filter :verify_authenticity_token ,:only=>[:add]
-
-      def add
-        skydrive = SkyDrive.new
-
-        file = params[:upload][:file]
-        resp = skydrive.put("", file)
-        send_data(resp, :type => 'text/json', :disposition => 'inline')
-      end
+      skip_before_filter :verify_authenticity_token ,:only=>[:put]
 
       def put
+        skydrive = SkyDrive.new
+
+        response = skydrive.put params[:upload][:file]
+        send_data(response.to_json, :type => 'text/json', :disposition => 'inline')
       end
     end
 
     class SkyDrive
-      # todo: take these parameters from environment or DB
-      CLIENT_ID = ''
-      CLIENT_SECRET = ''
-      REFRESH_TOKEN = ''
-
       def initialize
         @client = Signet::OAuth2::Client.new(
           :token_credential_uri => 'https://oauth.live.com/token',
-          :client_id => CLIENT_ID,
-          :client_secret => CLIENT_SECRET,
-          :refresh_token => REFRESH_TOKEN
+          :client_id => ENV["CLIENT_ID"],
+          :client_secret => ENV["CLIENT_SECRET"],
+          :refresh_token => ENV["REFRESH_TOKEN"]
         )
+        @client.access_token = ENV["ACCESS_TOKEN"] unless ENV["ACCESS_TOKEN"].nil? 
       end
 
-      def get_access_token
+      def refresh_access_token
         @client.fetch_access_token!
-        @client.access_token
+        ENV["ACCESS_TOKEN"] = @client.access_token
       end
 
-      def put(key, file)
-        access_token = get_access_token
+      def put(file)
+        response = try_put(file, @client.access_token || refresh_access_token)
+        response = try_put(file, refresh_access_token) unless response["source"]
+        response
+      end
 
+      def try_put(file, access_token)
         rest_create = "https://apis.live.net/v5.0/me/skydrive/files?access_token=#{access_token}"
-
         uri = URI.parse rest_create
-        res = post_multipart(uri, file)
-        res.body
+        JSON.parse(post_multipart(uri, file).body)
       end
 
       def post_multipart(uri, file, content_type=file.content_type, boundary="A300x")
