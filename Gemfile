@@ -6,4 +6,5 @@ gem 'haml-rails'
 gem 'sass'
 gem 'json'
 gem 'signet'
+gem 'uuidtools'
 

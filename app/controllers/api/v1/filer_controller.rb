@@ -2,6 +2,7 @@
 require 'net/https'
 require 'uri'
 require 'signet/oauth_2/client'
+require 'uuidtools'
 
 module Api
   module V1
@@ -33,6 +34,8 @@ module Api
       end
 
       def put(file)
+        uuid = UUIDTools::UUID.random_create.to_s
+        file.original_filename = "#{uuid}_#{file.original_filename}"
         response = try_put(file, @client.access_token || refresh_access_token)
         response = try_put(file, refresh_access_token) unless response["source"]
         response
