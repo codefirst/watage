@@ -1,4 +1,3 @@
-require 'uri'
 require 'httputil'
 
 class ApplicationController < ActionController::Base
@@ -10,6 +9,11 @@ class ApplicationController < ActionController::Base
 
   def authorize
     # todo: switch based on storage kind
-    redirect_to(Dropbox.new.authorize(params, url_for(:action => 'authorize')))
+    resp = Dropbox::authorize(params, url_for(:action => 'authorize'))
+    if resp[:url_for_authorize]
+      redirect_to resp[:url_for_authorize]
+    else
+      render :action => 'authorize'
+    end
   end
 end

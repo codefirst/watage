@@ -5,4 +5,5 @@ log/*.log
 tmp/**/*
 *~
 .DS_Store
+public/stylesheets/*.css
 launch.sh

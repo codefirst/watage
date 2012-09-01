@@ -6,7 +6,9 @@ class Dropbox
   API_URL = "https://api.dropbox.com/1"
   API_CONTENT_URL = "https://api-content.dropbox.com/1"
 
-  def authorize(params, callback_url)
+  def Dropbox::authorize(params, callback_url)
+    return {:action => "index"} if ENV["ACCESS_TOKEN"] and ENV["ACCESS_TOKEN_SECRET"] and ENV["DROPBOX_UID"]
+
     unless params["oauth_token"]
       response = https_post(URI::parse("https://api.dropbox.com/1/oauth/request_token"),
                             "Authorization" => "OAuth oauth_version=\"1.0\", oauth_signature_method=\"PLAINTEXT\", oauth_consumer_key=\"#{ENV["APP_KEY"]}\", oauth_signature=\"#{ENV["APP_SECRET"]}&\"")
@@ -14,7 +16,7 @@ class Dropbox
       ENV["request_token"]        = $2
       ENV["request_token_secret"] = $1
 
-      "https://www.dropbox.com/1/oauth/authorize?oauth_token=#{ENV["request_token"]}&oauth_callback=#{callback_url}"
+      {:url_for_authorize => "https://www.dropbox.com/1/oauth/authorize?oauth_token=#{ENV["request_token"]}&oauth_callback=#{callback_url}"}
     else
       response = https_post(URI.parse("https://api.dropbox.com/1/oauth/access_token"),
                             "Authorization" => "OAuth oauth_version=\"1.0\", oauth_signature_method=\"PLAINTEXT\", oauth_consumer_key=\"#{ENV["APP_KEY"]}\", oauth_token=\"#{ENV["request_token"]}\", oauth_signature=\"#{ENV["APP_SECRET"]}&#{ENV["request_token_secret"]}\"")
@@ -24,8 +26,6 @@ class Dropbox
       ENV["DROPBOX_UID"]         = $3
       ENV.delete "request_token"
       ENV.delete "request_token_secret"
-
-      {:action => "index"}
     end
   end
 

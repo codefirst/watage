@@ -1,1 +1,21 @@
-%h1 Storage service configuration
+%h1 Authorization succeeded!
+%p Add these varialbes below to your environment.
+%table
+ %tr
+  %td ACCESS_TOKEN
+  %td #{ENV["ACCESS_TOKEN"]}
+ %tr
+  %td ACCESS_TOKEN_SECRET
+  %td #{ENV["ACCESS_TOKEN_SECRET"]}
+ %tr
+  %td DROPBOX_UID
+  %td #{ENV["DROPBOX_UID"]}
+
+%p Setup command for heroku apps:
+%div.command
+ %span $ heroku config:add ACCESS_TOKEN=#{ENV["ACCESS_TOKEN"]}
+ %span $ heroku config:add ACCESS_TOKEN_SECRET=#{ENV["ACCESS_TOKEN_SECRET"]}
+ %span $ heroku config:add DROPBOX_UID=#{ENV["DROPBOX_UID"]}
+
+%p
+ %a{:href => url_for(:action => "index")} back to top
