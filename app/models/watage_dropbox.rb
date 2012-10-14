@@ -24,8 +24,8 @@ class WatageDropbox
       ENV["DROPBOX_SESSION"] = session.serialize
       ENV["ACCESS_TOKEN"] = access_token.key
       ENV["ACCESS_TOKEN_SECRET"] = access_token.secret
-      client = DropboxClient.new(session, :dropbox)
-      ENV["DROPBOX_UID"] = client.account_info["uid"].to_s
+      ENV["DROPBOX_UID"] = params["uid"]
+      {}
     end
   end
 
