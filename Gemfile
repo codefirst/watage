@@ -14,4 +14,4 @@ gem 'uglifier', '>= 1.0.3'
 gem 'json'
 gem 'signet'
 gem 'uuidtools'
-
+gem 'rest-client'

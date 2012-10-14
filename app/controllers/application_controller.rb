@@ -1,7 +1,6 @@
 require 'httputil'
 
 class ApplicationController < ActionController::Base
-  include HTTPUtil
   protect_from_forgery
 
   def index
