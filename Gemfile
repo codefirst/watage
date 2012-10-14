@@ -15,3 +15,6 @@ gem 'json'
 gem 'signet'
 gem 'uuidtools'
 gem 'rest-client'
+
+gem 'newrelic_rpm'
+
