@@ -4,6 +4,6 @@
 %a{:href => url_for(:action => "authorize")} setup here
 
 %h3 Add attachment here
-- form_tag '/', :enctype => 'multipart/form-data' do
+= form_tag '/', :enctype => 'multipart/form-data' do
  = file_field_tag 'upload[file]'
  = submit_tag 'upload'

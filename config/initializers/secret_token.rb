@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Watage::Application.config.secret_token = '5a6e7c38a68467897b348b0768c33013fa1b7731a7e68f8c2646f097553fb21e267deee6977badb37672b243a430f5676b85d37400727bf6f9c3ff60fe89ea7a'
+Watage::Application.config.secret_token = '439644c9c53771a5173199ef15f6e5d9d7d45fce08d0538315cc872fd12161a2c8ece550962e6b8dcae751ab3c63ef90373ee75994b93f762f9b86f2177c2785'
