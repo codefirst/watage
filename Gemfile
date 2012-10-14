@@ -15,7 +15,7 @@ gem 'uglifier', '>= 1.0.3'
 gem 'json'
 gem 'signet'
 gem 'uuidtools'
-gem 'rest-client'
 
 gem 'newrelic_rpm'
 
+gem 'dropbox-sdk'

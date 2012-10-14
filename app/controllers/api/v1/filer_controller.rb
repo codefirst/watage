@@ -11,7 +11,7 @@ module Api
         uuid = UUIDTools::UUID.random_create.to_s
         file.original_filename = URI::encode "#{uuid}_#{file.original_filename}"
 
-        storage = Dropbox.new
+        storage = WatageDropbox.new
         response = storage.put file
         send_data(response.to_json, :type => 'text/json', :disposition => 'inline')
       end
