@@ -13,9 +13,7 @@
 
 %p Setup command for heroku apps:
 %div.command
- %span $ heroku config:add ACCESS_TOKEN=#{ENV["ACCESS_TOKEN"]}
- %span $ heroku config:add ACCESS_TOKEN_SECRET=#{ENV["ACCESS_TOKEN_SECRET"]}
- %span $ heroku config:add DROPBOX_UID=#{ENV["DROPBOX_UID"]}
+ %span $ heroku config:add ACCESS_TOKEN=#{ENV["ACCESS_TOKEN"]} ACCESS_TOKEN_SECRET=#{ENV["ACCESS_TOKEN_SECRET"]} DROPBOX_UID=#{ENV["DROPBOX_UID"]}
 
 %p
  %a{:href => url_for(:action => "index")} back to top
