@@ -5,7 +5,7 @@ class WatageDropbox
   API_CONTENT_URL = "https://api-content.dropbox.com/1"
 
   def WatageDropbox::authorize(params, callback_url)
-    return {:action => "index"} if ENV["DROPBOX_SESSION"]
+    return {:action => "index"} if ENV["ACCESS_TOKEN"] and ENV["ACCESS_TOKEN_SECRET"]
 
     session = DropboxSession.new(ENV["APP_KEY"], ENV["APP_SECRET"])
     unless params["oauth_token"]
@@ -21,7 +21,6 @@ class WatageDropbox
       session.get_access_token
 
       access_token = session.access_token
-      ENV["DROPBOX_SESSION"] = session.serialize
       ENV["ACCESS_TOKEN"] = access_token.key
       ENV["ACCESS_TOKEN_SECRET"] = access_token.secret
       ENV["DROPBOX_UID"] = params["uid"]
@@ -30,7 +29,8 @@ class WatageDropbox
   end
 
   def put(file)
-    session = DropboxSession::deserialize ENV["DROPBOX_SESSION"]
+    session = DropboxSession.new(ENV["APP_KEY"], ENV["APP_SECRET"])
+    session.set_access_token(ENV["ACCESS_TOKEN"],ENV["ACCESS_TOKEN_SECRET"])
     client = DropboxClient.new(session, :dropbox)
     filename = file.original_filename
     response = client.put_file("/public/#{filename}", file.read)
