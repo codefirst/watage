@@ -33,7 +33,7 @@ class WatageDropbox
     session.set_access_token(ENV["ACCESS_TOKEN"],ENV["ACCESS_TOKEN_SECRET"])
     client = DropboxClient.new(session, :dropbox)
     filename = file.original_filename
-    response = client.put_file("/public/#{filename}", file.read)
+    response = client.put_file("/public/#{URI::unescape filename}", file.read)
     {:source => "http://dl.dropbox.com/u/#{client.account_info["uid"]}/#{filename}"}
   end
 end
