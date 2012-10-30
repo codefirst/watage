@@ -7,12 +7,14 @@ module Api
       skip_before_filter :verify_authenticity_token ,:only=>[:put]
 
       def put
-        file = params[:upload][:file]
+        file                = params[:upload][:file]
+        access_token        = params[:access_token]
+        access_token_secret = params[:access_token_secret]
+
         uuid = UUIDTools::UUID.random_create.to_s
         file.original_filename = URI::encode "#{uuid}_#{file.original_filename}"
-
-        storage = WatageDropbox.new
-        response = storage.put file
+        
+        response = DropboxAccount::put(file, access_token, access_token_secret)
         send_data(response.to_json, :type => 'text/json', :disposition => 'inline')
       end
     end

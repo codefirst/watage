@@ -5,12 +5,18 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize
-    # todo: switch based on storage kind
-    resp = WatageDropbox::authorize(params, url_for(:action => 'authorize'))
-    if resp[:url_for_authorize]
-      redirect_to resp[:url_for_authorize]
+    resp = DropboxAccount::authorize(params, url_for(:action => 'authorize'))
+    case resp
+    when String
+      redirect_to resp
     else
+      @account = resp
       render :action => 'authorize'
     end
+  end
+
+  def store_token
+    @account = DropboxAccount::store_token(params)
+    render :action => 'authorize'
   end
 end

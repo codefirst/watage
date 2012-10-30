@@ -1,6 +1,8 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.2.8'
+gem 'mongoid', '2.3.0'
+gem 'bson_ext'
 
 gem 'thin'
 
