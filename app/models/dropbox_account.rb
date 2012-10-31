@@ -66,4 +66,11 @@ class DropboxAccount
     response = client.put_file("/public/#{URI::unescape filename}", file.read)
     {:source => "http://dl.dropbox.com/u/#{client.account_info["uid"]}/#{filename}"}
   end
+
+  def DropboxAccount::remove(params)
+    DropboxAccount.find(:first, :conditions => {
+      :watage_access_token        => params[:account][:watage_access_token],
+      :watage_access_token_secret => params[:account][:watage_access_token_secret]}
+    ).tap {|account| account.delete if account}
+  end
 end

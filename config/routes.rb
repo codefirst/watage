@@ -3,7 +3,8 @@ Watage::Application.routes.draw do
   get '/',  :controller => 'application', :action => 'index'
   get '/authorize', :controller => 'application', :action => 'index'
   post '/authorize', :controller => 'application', :action => 'authorize'
-  get '/authorize/:tmp_key', :controller => 'application', :action => 'store_token'
+  get  '/authorize/:tmp_key', :controller => 'application', :action => 'authorize'
+  post '/remove', :controller => 'application', :action => 'remove'
 
   namespace(:api) do
     namespace(:v1) do
