@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 Watage::Application.routes.draw do
-  get '/',  :controller => 'application', :action => 'index'
-  get '/authorize', :controller => 'application', :action => 'index'
+  get  '/',  :controller => 'application', :action => 'index'
+  get  '/authorize' => redirect('/')
   post '/authorize', :controller => 'application', :action => 'authorize'
   get  '/authorize/:tmp_key', :controller => 'application', :action => 'authorize'
   post '/remove', :controller => 'application', :action => 'remove'
