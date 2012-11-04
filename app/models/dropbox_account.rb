@@ -29,7 +29,11 @@ class DropboxAccount
 
     account = DropboxAccount.new(:app_key => app_key, :app_secret => app_secret)
     session = DropboxSession.new(app_key, app_secret)
-    session.get_request_token
+    begin
+      session.get_request_token
+    rescue DropboxAuthError
+      return "/"
+    end
     account[:request_token_key]    = session.request_token.key
     account[:request_token_secret] = session.request_token.secret
     account[:watage_temporary_key] = UUIDTools::UUID.random_create.to_s
