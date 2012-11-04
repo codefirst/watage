@@ -1,0 +1,37 @@
+/*
+*= require_tree .
+*= require_self
+*/
+
+@import "compass";
+
+body {
+  background-image: url(bgnoise_lg.png);
+}
+
+.box {
+  margin-top: 30px;
+}
+
+footer {
+  margin-top: 30px;
+  color: #999;
+}
+
+.displaybox {
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(0, 0, 0, .1);
+  @include box-shadow(rgba(0, 0, 0, .15) 0 0 2px);
+  @include border-radius(6px);
+}
+
+h3 {
+  border-bottom: 1px solid rgba(0, 0, 0, .2); 
+  text-shadow: -1px 1px 0 rgba(255, 255, 255, 1);
+}
+
+h4 {
+  text-shadow: -1px 1px 0 rgba(255, 255, 255, 1);
+}

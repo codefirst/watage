@@ -2,7 +2,7 @@
 
 .box
  %h4 Register your storage
- =form_for :dropbox_acocunt, :url => {:action => :authorize} do |form|
+ =form_for :dropbox_acocunt, :url => {:action => :authorize}, :html => {:class => "form-inline"} do |form|
   =select_tag 'app[type]', options_for_select([['Dropbox', 'dropbox']])
   =text_field :app, :key, {:class => :text, :placeholder => "App Key"}
   =password_field :app, :secret, {:class => :text, :placeholder => "App Secret"}

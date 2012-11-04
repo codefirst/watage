@@ -10,6 +10,7 @@ gem 'thin'
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'sass-rails'
+gem 'compass-rails'
 gem "twitter-bootstrap-rails"
 gem 'uglifier', '>= 1.0.3'
 
