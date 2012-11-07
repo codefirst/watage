@@ -7,12 +7,15 @@ class ApplicationController < ActionController::Base
   def authorize
     if params[:tmp_key].nil?
       resp = DropboxAccount::authorize(params, url_for(:action => 'authorize'))
-      case resp
-      when String
-        redirect_to resp
-      else
-        @account = resp
+      case resp.keys
+      when [:redirect]
+        redirect_to resp.values.first
+      when [:authorized]
+        @account = resp.values.first
         render :action => 'authorize'
+      when [:error]
+        @error = resp.values.first
+        render :action => 'index'
       end
     else
       @account = DropboxAccount::store_token(params)

@@ -25,21 +25,21 @@ class DropboxAccount
                                     :app_secret                 => app_secret,
                                     :access_token.exists        => true,
                                     :access_token_secret.exists => true})
-    return account if account
+    return {:authorized => account} if account
 
     account = DropboxAccount.new(:app_key => app_key, :app_secret => app_secret)
     session = DropboxSession.new(app_key, app_secret)
     begin
       session.get_request_token
     rescue DropboxAuthError
-      return "/"
+      return {:error => "Check your app_key and app_secret"}
     end
     account[:request_token_key]    = session.request_token.key
     account[:request_token_secret] = session.request_token.secret
     account[:watage_temporary_key] = UUIDTools::UUID.random_create.to_s
     account.save
 
-    session.get_authorize_url(callback_url+"/"+account[:watage_temporary_key])
+    {:redirect => session.get_authorize_url(callback_url+"/"+account[:watage_temporary_key])}
   end
 
   def DropboxAccount::store_token(params)

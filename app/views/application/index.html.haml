@@ -1,5 +1,8 @@
 %h3 Watage: a simple online storage interface
-
+-if @error
+ %div.alert.alert-error
+  %strong Authentication failure:
+  %span #{@error}
 .box
  %h4 Register your storage
  =form_for :dropbox_acocunt, :url => {:action => :authorize}, :html => {:class => "form-inline"} do |form|
