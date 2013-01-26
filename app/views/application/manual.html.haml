@@ -1,0 +1,74 @@
+%h3 About Watage
+%div.message_wrapper
+ %p
+  Watage is a simple interface for various online storage services.
+  Watage enables your application to store files
+  without knowing about background storage services.
+
+%h3 Currently supported services
+%div.message_wrapper
+ %table
+  %tr
+   %td SERVICE
+   %td PUT
+   %td RENAME
+   %td DELETE
+  %tr
+   %td
+    %a{:href => "https://www.dropbox.com/"} Dropbox
+   %td o
+   %td x
+   %td x
+ %p Please contribute us :)
+
+%h3 How to start using Watage
+%div.message_wrapper
+ %h5 Register your account
+ %ol
+  %li Create a Dropbox account.
+  %li
+   Go to
+   %a{:href => "https://www.dropbox.com/developers/apps/"} https://www.dropbox.com/developers/apps/
+   and get your App key and App secret.
+  %li
+   Access
+   %a{:href => "http://watage.asakusa-satellite.org/"} http://watage.asakusa-satellite.org/
+   and register your account to Watage.
+  %li
+   Watage returns Access token and Access token secret.
+   If you forget them, re-register your app and Watage shows your token again.
+  %li Click 'Back to top' and you can test uploading.
+
+ %h5 Upload your file via API
+ %ol
+  %li
+   POST your file to
+   %a{:href => "http://watage.asakusa-satellite.org/api/v1/put"} http://watage.asakusa-satellite.org/api/v1/put.
+   Parameters are:
+   %ul
+    %li upload[file]
+    %li access_token
+    %li access_token_secret
+  %li Watage returns the url for uploaded file by json format.
+
+%h3 How to deploy your own Watage
+%div.message_wrapper
+ %h5 Requirement
+ %ul
+  %li Ruby 1.8.7 or 1.9.3
+  %li RubyGems 1.4.2 or later
+  %li Bundler 1.0.7 or later
+  %li MongoDB 1.8.1 or later
+  %li Google Chrome / Firefox / Safari
+
+ %h5 Install and launch Watage
+ %pre
+  %code
+   = preserve do
+    :escaped
+     # Install libraries
+     $ bundle install --path .bundle
+     
+     # Launch Watage
+     $ bundle exec rake assets:precompile RAILS_ENV=production
+     $ bundle exec rails server -e production

@@ -4,6 +4,9 @@ class ApplicationController < ActionController::Base
   def index
   end
 
+  def manual
+  end
+
   def authorize
     if params[:tmp_key].nil?
       resp = DropboxAccount::authorize(params, url_for(:action => 'authorize'))
