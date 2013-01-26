@@ -6,7 +6,7 @@
 @import "compass";
 
 body {
-  background-image: url(bgnoise_lg.png);
+  background-image: image-url("bgnoise_lg.png");
 }
 
 .box {
@@ -34,4 +34,30 @@ h3 {
 
 h4 {
   text-shadow: -1px 1px 0 rgba(255, 255, 255, 1);
+}
+
+div.message_wrapper {
+  margin-left: 20px;
+
+  p:first-letter {
+    padding-left: 1em;
+  }
+
+  table {
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+    tr {
+      td {
+        padding-left:  2em;
+        padding-right: 2em;
+        border: solid 1px gray;
+      }
+      background-color: #fafafa;
+    }
+    tr:nth-child(1) {
+      background-color: #dddddd;
+    }
+  }
 }
