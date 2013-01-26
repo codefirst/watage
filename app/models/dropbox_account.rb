@@ -61,7 +61,7 @@ class DropboxAccount
     account = DropboxAccount.find(:first, :conditions => {
                                     :watage_access_token        => token,
                                     :watage_access_token_secret => secret})
-    return if account.nil?
+    return {:error => "access token error"} if account.nil?
     
     session = DropboxSession.new(account[:app_key], account[:app_secret])
     session.set_access_token(account[:access_token], account[:access_token_secret])
