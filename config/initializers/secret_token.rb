@@ -1,7 +1,12 @@
 # Be sure to restart your server when you modify this file.
 
-# Your secret key for verifying the integrity of signed cookies.
+# Your secret key is used for verifying the integrity of signed cookies.
 # If you change this key, all old signed cookies will become invalid!
+
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Watage::Application.config.secret_token = '9f1051bf6ffe8576f397409959b3d479a2afc3b2e20c79c2c4b4b28b1777dd7d993ef7ccd46908803154cb73318fea1ea158ca4ef42e2741e7ca9eb9b15fc112'
+# You can use `rake secret` to generate a secure secret key.
+
+# Make sure your secret_key_base is kept private
+# if you're sharing your code publicly.
+Watage::Application.config.secret_key_base = '96792d028310e1205cd860e9e023a77754301e8d6cac33d26aaa26af4af7d82ab06ab1f2c4b5fe50f1719f46b00d9c3400ff08e220922de8705405f3f8e3b70c'
