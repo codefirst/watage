@@ -2,7 +2,6 @@ class DropboxController < ApplicationController
   def authorize
     attr = params[:dropbox_account].permit(:app_key, :app_secret)
     account = DropboxAccount.new(attr)
-
     db_session = DropboxSession.new(account.app_key, account.app_secret)
     db_session.get_request_token
     set_session(db_session.serialize, account.app_key, account.app_secret)
@@ -13,7 +12,12 @@ class DropboxController < ApplicationController
     @account = DropboxAccount.find_by_dropbox_uid(session[:app_key], session[:app_secret], params[:uid])
     if @account.nil?
       db_session = DropboxSession.deserialize(session[:dropbox_session])
-      db_session.get_access_token
+      begin
+        db_session.get_access_token
+      rescue => e
+        redirect_to root_path, alert: e.message
+        return
+      end
       @account = DropboxAccount.new(
         app_key:                    session[:app_key],
         app_secret:                 session[:app_secret],
