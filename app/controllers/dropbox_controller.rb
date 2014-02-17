@@ -3,7 +3,12 @@ class DropboxController < ApplicationController
     attr = params[:dropbox_account].permit(:app_key, :app_secret)
     account = DropboxAccount.new(attr)
     db_session = DropboxSession.new(account.app_key, account.app_secret)
-    db_session.get_request_token
+    begin
+      db_session.get_request_token
+    rescue => e
+      redirect_to root_path, alert: e.message
+      return
+    end
     set_session(db_session.serialize, account.app_key, account.app_secret)
     redirect_to db_session.get_authorize_url(dropbox_callback_url)
   end
