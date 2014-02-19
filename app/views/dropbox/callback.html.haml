@@ -1,0 +1,14 @@
+%h3.page-header Watage Account Information
+%p Use key below to access Watage!
+%table.table
+ %tr
+  %td ACCESS_TOKEN
+  %td #{@account.watage_access_token}
+ %tr
+  %td ACCESS_TOKEN_SECRET
+  %td #{@account.watage_access_token_secret}
+
+= form_for @account, url: dropbox_destroy_path, method: :delete do |form|
+ = hidden_field :dropbox_account, :watage_access_token, value: @account.watage_access_token
+ = hidden_field :dropbox_account, :watage_access_token_secret, value: @account.watage_access_token_secret
+ = submit_tag 'Remove this account', class: 'btn btn-danger'

@@ -1,17 +1,16 @@
-# -*- coding: utf-8 -*-
 Watage::Application.routes.draw do
-  get  '/',  :controller => 'application', :action => 'index'
-  get  '/manual', :controller => 'application', :action => 'manual'
-  get  '/authorize' => redirect('/')
-  post '/authorize', :controller => 'application', :action => 'authorize'
-  get  '/authorize/:tmp_key', :controller => 'application', :action => 'authorize'
-  post '/remove', :controller => 'application', :action => 'remove'
+  get '/', to: 'top#index'
+  get '/manual', to: 'top#manual'
+
+  post 'dropbox/authorize', as: 'dropbox_authorize'
+  get 'dropbox/callback', as: 'dropbox_callback'
+  delete 'dropbox/destroy', as: 'dropbox_destroy'
 
   namespace(:api) do
     namespace(:v1) do
-      post  'put', :controller => 'filer', :action => 'put'
+      post 'put', to: 'filer#put'
     end
   end
 
-  root :to => 'application#index'
+  root to: 'application#index'
 end
