@@ -1,12 +1,6 @@
 box: wercker/rvm
-# Build definition
-# See the Rails section on the wercker devcenter:
-# http://devcenter.wercker.com/articles/languages/ruby/settingup-rails4.html
-# You will want to define your database as follows:
 services:
   - wercker/mongodb
-# See more about services on our devcenter:
-# http://devcenter.wercker.com/articles/services/
 build:
     steps:
         # Uncomment this to force RVM to use a specific Ruby version
@@ -32,3 +26,7 @@ build:
         # - script:
         #        name: rspec
         #        code: bundle exec rspec
+
+    after-steps:
+       - mzp/http-notify:
+           url: $DASHBOZU_URL
