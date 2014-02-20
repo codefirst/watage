@@ -16,13 +16,8 @@ production:
   sessions:
     default:
       hosts:
-        - - <%= ENV['MONGODB_HOST'] || 'localhost' %>
-          - <%= ENV['MONGODB_PORT'] || 27017 %>
+        - <%= "#{ENV['MONGODB_HOST'] || 'localhost'}:#{ENV['MONGODB_PORT'] || 27017}" %>
       database: <%= ENV['MONGODB_DATABASE'] || 'watage_production' %>
       username: <%= ENV['MONGODB_USERNAME'] %>
       password: <%= ENV['MONGODB_PASSWORD'] %>
-      # slaves:
-      #   - host: slave1.local
-      #     port: 27018
-      #   - host: slave2.local
-      #     port: 27019
+
