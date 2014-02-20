@@ -10,7 +10,7 @@ test:
     default:
       database: watage_test
       hosts:
-        - localhost
+        -  <%= ENV['WERCKER_MONGODB_HOST'] || 'localhost' %>
 
 production:
   sessions:
