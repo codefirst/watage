@@ -1,5 +1,6 @@
 Watage
 ===================
+[![Code Climate](https://codeclimate.com/github/codefirst/watage.png)](https://codeclimate.com/github/codefirst/watage)
 
 Overview
 ----------------
