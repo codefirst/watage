@@ -1,6 +1,7 @@
 Watage
 ===================
 [![Code Climate](https://codeclimate.com/github/codefirst/watage.png)](https://codeclimate.com/github/codefirst/watage)
+[![wercker status](https://app.wercker.com/status/6d3fec808d55220e3ec8f3c432d2dd77/s/ "wercker status")](https://app.wercker.com/project/bykey/6d3fec808d55220e3ec8f3c432d2dd77)
 
 Overview
 ----------------
