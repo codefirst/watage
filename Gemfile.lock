@@ -75,7 +75,7 @@ GEM
       tzinfo (~> 0.3.22)
     moped (1.5.2)
     multi_json (1.8.4)
-    newrelic_rpm (3.7.2.192)
+    newrelic_rpm (3.7.3.199)
     origin (1.1.0)
     polyglot (0.3.4)
     quiet_assets (1.0.2)
