@@ -5,7 +5,7 @@ gem 'rails', '4.0.5'
 gem 'mongoid_rails4', :require => 'mongoid'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 4.0.2'
 gem 'haml-rails'
 gem 'bootstrap-sass'
 
