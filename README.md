@@ -1,5 +1,8 @@
 Watage
 ===================
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
 [![Code Climate](https://codeclimate.com/github/codefirst/watage.png)](https://codeclimate.com/github/codefirst/watage)
 [![wercker status](https://app.wercker.com/status/6d3fec808d55220e3ec8f3c432d2dd77/s/ "wercker status")](https://app.wercker.com/project/bykey/6d3fec808d55220e3ec8f3c432d2dd77)
 
@@ -17,6 +20,7 @@ Requirement
  * Ruby 1.9.3 or 2.0.0 or 2.1.0
  * RubyGems 1.4.2 or later
  * Bundler 1.0.7 or later
+ * MongoDB 2.6 or later
 
 Install
 ----------------
