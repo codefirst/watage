@@ -17,7 +17,7 @@ Authors
 
 Requirement
 ----------------
- * Ruby 1.9.3 or 2.0.0 or 2.1.0
+ * Ruby 1.9.3 or 2.0.0 or 2.1 or 2.2
  * RubyGems 1.4.2 or later
  * Bundler 1.0.7 or later
  * MongoDB 2.6 or later

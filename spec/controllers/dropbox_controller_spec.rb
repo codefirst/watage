@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe DropboxController do
+describe DropboxController, type: :controller do
 
 #  describe "GET 'authorize'" do
 #    it "returns http success" do

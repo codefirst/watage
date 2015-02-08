@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe DropboxAccount do
   describe 'find_by_watage_token' do

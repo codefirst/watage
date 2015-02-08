@@ -48,6 +48,7 @@ gem 'thin'
 group :development, :test do
   gem 'quiet_assets'
   gem 'rspec-rails'
+  gem 'rspec-its'
 end
 
 group :production do
