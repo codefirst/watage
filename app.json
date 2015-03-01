@@ -3,7 +3,7 @@
   "description": "A wrapper for web strage services",
   "repository": "https://github.com/codefirst/watage/",
   "addons": [
-    "mongohq"
+    "mongolab"
   ]
 }
 
