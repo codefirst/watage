@@ -1,18 +1,19 @@
 development:
-  sessions:
+  clients:
     default:
       database: watage_development
       hosts:
         - localhost
 
 test:
-  sessions:
+  clients:
     default:
       database: watage_test
       hosts:
         -  <%= ENV['WERCKER_MONGODB_HOST'] || 'localhost' %>
 
 production:
-  sessions:
+  clients:
     default:
       uri: <%= ENV['MONGODB_URI'] || ENV['MONGOHQ_URL'] || ENV['MONGOLAB_URI'] %>
+
