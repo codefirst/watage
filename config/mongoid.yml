@@ -10,7 +10,7 @@ test:
     default:
       database: watage_test
       hosts:
-        -  <%= ENV['WERCKER_MONGODB_HOST'] || 'localhost' %>
+        -  <%= ENV['MONGO_PORT_27017_TCP_ADDR'] || 'localhost' %>
 
 production:
   clients:
