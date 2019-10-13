@@ -41,7 +41,7 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'dropbox-sdk'
+gem 'dropbox_api'
 gem 'uuidtools'
 gem 'thin'
 
