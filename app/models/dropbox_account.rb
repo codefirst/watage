@@ -20,12 +20,17 @@ class DropboxAccount
   end
 
   def put(file)
-    session = DropboxSession.new(app_key, app_secret)
-    session.set_access_token(access_token, access_token_secret)
-    client = DropboxClient.new(session, :dropbox)
-    filename = file.original_filename
-    uid = client.account_info["uid"]
-    client.put_file("/public/#{URI::unescape filename}", file.read)
-    {source: "https://dl.dropboxusercontent.com/u/#{uid}/#{filename}"}
+    client = DropboxApi::Client.new(access_token)
+    path = "/#{uuid}-#{URI::unescape file.original_filename}"
+    client.upload(path, file.read)
+    link = client.create_shared_link_with_settings(path)
+
+    {
+      source: 'https://dl.dropboxusercontent.com' + URI.parse(link.url).path
+    }
+  end
+
+  def uuid
+    UUIDTools::UUID.random_create.to_s
   end
 end
