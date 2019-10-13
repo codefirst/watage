@@ -3,7 +3,7 @@ development:
     default:
       database: watage_development
       hosts:
-        - localhost
+        -  <%= ENV['MONGO_PORT_27017_TCP_ADDR'] || 'localhost' %>
 
 test:
   clients:
